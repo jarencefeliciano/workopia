@@ -48,3 +48,29 @@ function loadPartial(string $name): void
         throw new Exception("View {$name} not found.");
     }
 }
+
+/**
+ * Inspect a value(s)
+ *
+ * @param mixed $value
+ * @return void
+ */
+function inspect(mixed $value): void
+{
+    echo '<pre>';
+        var_dump($value);
+    echo '</pre>';
+}
+
+/**
+ * Inspect a value(s)
+ *
+ * @param mixed $value
+ * @return void
+ */
+function inspectAndDie(mixed $value): void
+{
+    echo '<pre>';
+        die(var_dump($value));
+    echo '</pre>';
+}
