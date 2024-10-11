@@ -8,6 +8,43 @@ declare(strict_types=1);
  * @param string $path
  * @return string
  */
-function basePath(string $path = ''): string {
-  return rtrim(dirname(__DIR__), '/') . '/' . ltrim($path, '/');
+function basePath(string $path = ''): string
+{
+    return rtrim(dirname(__DIR__), '/') . '/' . ltrim($path, '/');
+}
+
+/**
+ * Load a view
+ *
+ * @param string $name
+ * @return void
+ */
+function loadView(string $name): void
+{
+    $view_path = basePath('App/Views/'.$name.'.php');
+
+    if (file_exists($view_path)) {
+        require_once $view_path;
+    } else {
+        echo "error";
+        //throw new Exception("View {$name} not found.");
+    }
+}
+
+/**
+ * Load a partial
+ *
+ * @param string $name
+ * @return void
+ */
+function loadPartial(string $name): void
+{
+    $partial_path = basePath('App/Views/partials/'.$name.'.php');
+
+    if (file_exists($partial_path)) {
+        require_once $partial_path;
+    } else {
+        echo "error";
+        throw new Exception("View {$name} not found.");
+    }
 }
